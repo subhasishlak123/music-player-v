@@ -1,18 +1,21 @@
-// Project level gradle configuration
-
 buildscript {
-	repositories {
-		google()
-		mavenCentral()
-	}
-	dependencies {
-		classpath 'com.android.tools.build:gradle:<version>'
-	}
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // I fixed the <version> placeholder to 8.2.2
+        classpath 'com.android.tools.build:gradle:8.2.2'
+    }
 }
 
 allprojects {
-	repositories {
-		google()
-		mavenCentral()
-	}
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
