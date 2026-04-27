@@ -1,3 +1,14 @@
+Congratulations! If the build is Green, it means your code is correct. However,
+GitHub deletes the files it creates as soon as the build is finished unless you
+tell it to save them.
+
+To get a download link, you need to add an "Upload" step to your workflow file.
+
+Step 1: Update your Workflow file
+
+Open .github/workflows/android.yml and replace the code with this. I have added
+the Upload APK section at the bottom:
+
 name: Android CI
 
 on:
@@ -20,8 +31,36 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
-        gradle-version: '8.5' # Added quotes here to fix the "version does not exist" error
+        gradle-version: '8.2'
 
-    - name: Build with Gradle
-      # We use 'gradle' (the system one) because your './gradlew' is missing/broken
-      run: gradle build
+    - name: Build Debug APK
+      # We use assembleDebug to specifically create the APK file
+      run: gradle assembleDebug
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-music-player-apk
+        path: app/build/outputs/apk/debug/*.apk
+
+Step 2: Where to find the download link
+
+After you commit this change and the build finishes:
+
+1.  Go to the Actions tab on the GitHub website.
+2.  Click on the latest run (the one at the top with the green checkmark).
+3.  Scroll all the way down to the bottom of that page.
+4.  You will see a section called Artifacts.
+5.  Click on the name "my-music-player-apk". It will download as a .zip file.
+    Inside that zip is your .apk file!
+
+Why this change was needed:
+
+  - assembleDebug: This command specifically tells Gradle to package the app
+    into an APK file.
+  - upload-artifact: This tells GitHub: "Take the APK file from the secret build
+    folder and move it to the dashboard so I can download it."
+
+Note for Mobile Users: Most Android phones won't let you open the .zip directly
+to install. You will need to download the zip, use a "File Manager" app to
+extract the .apk, and then you can install it on your phone.
