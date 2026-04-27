@@ -20,8 +20,8 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
-        gradle-version: 8.0 # This forces it to use 8.0 even if your wrapper is missing
+        gradle-version: '8.5' # Added quotes here to fix the "version does not exist" error
 
     - name: Build with Gradle
-      # We use 'gradle' instead of './gradlew' because your gradlew file is broken
+      # We use 'gradle' (the system one) because your './gradlew' is missing/broken
       run: gradle build
