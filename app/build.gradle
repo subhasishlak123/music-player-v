@@ -1,0 +1,23 @@
+// App level gradle with dependencies
+
+plugins {
+	id 'com.android.application'
+}
+
+android {
+	compileSdk <version>
+	defaultConfig {
+		applicationId "com.example.musicplayer"
+		minSdk <version>
+		targetSdk <version>
+		versionCode 1
+		versionName "1.0"
+	}
+}
+
+dependencies {
+	implementation 'androidx.core:core-ktx:<version>'
+	implementation 'androidx.appcompat:appcompat:<version>'
+	implementation 'com.google.android.material:material:<version>'
+	// Add more dependencies as needed
+}

@@ -1,0 +1,18 @@
+// Project level gradle configuration
+
+buildscript {
+	repositories {
+		google()
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'com.android.tools.build:gradle:<version>'
+	}
+}
+
+allprojects {
+	repositories {
+		google()
+		mavenCentral()
+	}
+}
