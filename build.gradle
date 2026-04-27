@@ -1,15 +1,14 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
     dependencies {
-        // This is the Android Gradle Plugin version
         classpath 'com.android.tools.build:gradle:8.2.2'
     }
 }
 
-// We removed 'allprojects' and 'repositories' from here.
-// They are now handled in the 'settings.gradle' file.
-
+// Keep the rest of the file empty except for the clean task
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
